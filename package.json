@@ -19,6 +19,7 @@
     "test:e2e": "node scripts/test-e2e.js"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "typescript": "^5.8.3"
   }
 }
