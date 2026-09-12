@@ -1,3 +1,4 @@
+import './config/env';
 import http from 'http';
 import { createApp } from './app';
 import { initSocketServer } from './socket';
