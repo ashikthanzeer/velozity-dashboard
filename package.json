@@ -1,0 +1,24 @@
+{
+  "name": "velozity-dashboard",
+  "version": "1.0.0",
+  "description": "Real-Time Client Project Dashboard with Role-Based Access & Live Activity Feed",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "build": "npm --prefix server run build && npm --prefix client run build",
+    "seed": "npm --prefix server run seed",
+    "prisma:generate": "npm --prefix server run prisma:generate",
+    "prisma:push": "npm --prefix server run prisma:push",
+    "db:local": "node scripts/run-embedded-pg.js",
+    "test:e2e": "node scripts/test-e2e.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
