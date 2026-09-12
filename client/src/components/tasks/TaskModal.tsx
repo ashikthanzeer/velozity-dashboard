@@ -34,10 +34,10 @@ export const TaskModal: React.FC<TaskModalProps> = ({
   useEffect(() => {
     if (isOpen) {
       // Load available projects and developers
-      api.get('/projects').then((res) => {
+      api.get('projects').then((res) => {
         if (res.success && res.data) setProjects(res.data.projects);
       });
-      api.get('/users/developers').then((res) => {
+      api.get('users/developers').then((res) => {
         if (res.success && res.data) setDevelopers(res.data.developers);
       });
 
@@ -87,9 +87,9 @@ export const TaskModal: React.FC<TaskModalProps> = ({
       };
 
       if (taskToEdit) {
-        await api.put(`/tasks/${taskToEdit.id}`, payload);
+        await api.put(`tasks/${taskToEdit.id}`, payload);
       } else {
-        await api.post('/tasks', payload);
+        await api.post('tasks', payload);
       }
 
       onSuccess();

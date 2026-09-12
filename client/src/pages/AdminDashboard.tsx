@@ -20,7 +20,7 @@ export const AdminDashboard: React.FC = () => {
 
   const fetchStats = async () => {
     try {
-      const res = await api.get('/dashboard/stats');
+      const res = await api.get('dashboard/stats');
       if (res.success && res.data) {
         setStats(res.data.stats);
       }

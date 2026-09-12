@@ -64,7 +64,7 @@ export const TasksPage: React.FC = () => {
   const handleDelete = async (taskId: string) => {
     if (!confirm('Are you sure you want to delete this task?')) return;
     try {
-      await api.delete(`/tasks/${taskId}`);
+      await api.delete(`tasks/${taskId}`);
       setTasks((prev) => prev.filter((t) => t.id !== taskId));
     } catch (e: any) {
       alert(e.message || 'Failed to delete task');

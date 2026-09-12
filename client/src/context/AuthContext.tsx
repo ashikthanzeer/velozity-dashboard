@@ -28,7 +28,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
 
     try {
-      const res = await api.get('/auth/me');
+      const res = await api.get('auth/me');
       if (res.success && res.data.user) {
         setUser(res.data.user);
       } else {
@@ -60,7 +60,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const login = async (email: string, password: string) => {
     setIsLoading(true);
     try {
-      const res = await api.post('/auth/login', { email, password });
+      const res = await api.post('auth/login', { email, password });
       if (res.success && res.data) {
         setStoredAccessToken(res.data.accessToken);
         setUser(res.data.user);
@@ -72,7 +72,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const logout = async () => {
     try {
-      await api.post('/auth/logout');
+      await api.post('auth/logout');
     } catch (e) {
       // Ignore
     } finally {

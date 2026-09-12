@@ -8,7 +8,7 @@ export const TeamPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api.get('/users').then((res) => {
+    api.get('users').then((res) => {
       if (res.success && res.data) {
         setUsers(res.data.users);
       }

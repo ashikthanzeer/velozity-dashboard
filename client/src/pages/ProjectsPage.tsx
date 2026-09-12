@@ -31,7 +31,7 @@ export const ProjectsPage: React.FC = () => {
 
   const loadProjects = async () => {
     try {
-      const res = await api.get('/projects');
+      const res = await api.get('projects');
       if (res.success && res.data) {
         setProjects(res.data.projects);
       }
@@ -45,7 +45,7 @@ export const ProjectsPage: React.FC = () => {
   const loadClients = async () => {
     if (!isAdmin && !isPM) return;
     try {
-      const res = await api.get('/clients');
+      const res = await api.get('clients');
       if (res.success && res.data) {
         setClients(res.data.clients);
       }
@@ -69,7 +69,7 @@ export const ProjectsPage: React.FC = () => {
     setIsSubmitting(true);
     setError(null);
     try {
-      await api.post('/projects', {
+      await api.post('projects', {
         name: projectName,
         description: description || undefined,
         clientId,

@@ -22,8 +22,8 @@ export const DeveloperDashboard: React.FC = () => {
   const loadDeveloperData = async () => {
     try {
       const [tasksRes, statsRes] = await Promise.all([
-        api.get('/tasks'),
-        api.get('/dashboard/stats'),
+        api.get('tasks'),
+        api.get('dashboard/stats'),
       ]);
 
       if (tasksRes.success && tasksRes.data) {

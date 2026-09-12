@@ -37,7 +37,7 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const fetchNotifications = async () => {
     if (!isAuthenticated) return;
     try {
-      const res = await api.get('/notifications');
+      const res = await api.get('notifications');
       if (res.success && res.data) {
         setNotifications(res.data.notifications || []);
         setUnreadNotificationCount(res.data.unreadCount || 0);
@@ -51,7 +51,7 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const fetchMissedActivities = async () => {
     if (!isAuthenticated) return;
     try {
-      const res = await api.get('/activity/recent?limit=20');
+      const res = await api.get('activity/recent?limit=20');
       if (res.success && res.data) {
         setActivities(res.data.activities || []);
       }
@@ -158,7 +158,7 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   const markNotificationAsRead = async (id: string) => {
     try {
-      const res = await api.patch(`/notifications/${id}/read`);
+      const res = await api.patch(`notifications/${id}/read`);
       if (res.success && res.data) {
         setNotifications((prev) =>
           prev.map((n) => (n.id === id ? { ...n, isRead: true } : n))
@@ -172,7 +172,7 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   const markAllNotificationsAsRead = async () => {
     try {
-      const res = await api.post('/notifications/read-all');
+      const res = await api.post('notifications/read-all');
       if (res.success) {
         setNotifications((prev) => prev.map((n) => ({ ...n, isRead: true })));
         setUnreadNotificationCount(0);

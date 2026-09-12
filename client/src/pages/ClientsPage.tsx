@@ -18,7 +18,7 @@ export const ClientsPage: React.FC = () => {
 
   const loadClients = async () => {
     try {
-      const res = await api.get('/clients');
+      const res = await api.get('clients');
       if (res.success && res.data) {
         setClients(res.data.clients);
       }
@@ -43,7 +43,7 @@ export const ClientsPage: React.FC = () => {
     setIsSubmitting(true);
     setError(null);
     try {
-      await api.post('/clients', {
+      await api.post('clients', {
         name,
         company,
         email,

@@ -37,7 +37,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
     if (newStatus === task.status || isUpdating) return;
     setIsUpdating(true);
     try {
-      const res = await api.patch(`/tasks/${task.id}/status`, { status: newStatus });
+      const res = await api.patch(`tasks/${task.id}/status`, { status: newStatus });
       if (res.success && res.data) {
         if (onStatusUpdated) onStatusUpdated(res.data.task);
       }
