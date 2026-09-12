@@ -1,19 +1,20 @@
 import './config/env';
 import http from 'http';
-import { createApp } from './app';
-import { initSocketServer } from './socket';
-import { startOverdueScheduler } from './jobs/overdueScheduler';
-import { config } from './config/env';
-import { prisma } from './config/prisma';
+import { ensureDatabase } from './config/ensureDatabase';
 
 async function bootstrap() {
+  await ensureDatabase();
+
+  const { createApp } = await import('./app.js');
+  const { initSocketServer } = await import('./socket/index.js');
+  const { startOverdueScheduler } = await import('./jobs/overdueScheduler.js');
+  const { config } = await import('./config/env.js');
+  const { prisma } = await import('./config/prisma.js');
+
   const app = createApp();
   const server = http.createServer(app);
 
-  // Initialize WebSocket engine
   initSocketServer(server);
-
-  // Start overdue tasks background cron scheduler
   startOverdueScheduler();
 
   server.listen(config.port, () => {
@@ -21,7 +22,8 @@ async function bootstrap() {
     console.log(`🚀 Velozity API & WebSocket Server Running`);
     console.log(`📡 Port: ${config.port}`);
     console.log(`🌍 Environment: ${config.nodeEnv}`);
-    console.log(`🔗 Health Check: http://localhost:${config.port}/api/health`);
+    console.log(`🗄️  Database: ${config.databaseUrl.replace(/:[^:@]+@/, ':****@')}`);
+    console.log(`🔗 Health Check: /api/health`);
     console.log(`====================================================`);
   });
 
